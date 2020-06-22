@@ -1,17 +1,17 @@
 {
-  "name": "matrix-bot-sdk",
-  "version": "0.5.4",
+  "name": "@groovehq/matrix-bot-sdk",
+  "version": "0.5.5",
   "description": "A lightweight version of the matrix-js-sdk intended for bots",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/turt2live/matrix-js-bot-sdk.git"
+    "url": "git+https://github.com/groovehq/matrix-js-bot-sdk.git"
   },
-  "author": "turt2live",
+  "author": "kevinrademan",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/turt2live/matrix-js-bot-sdk/issues"
+    "url": "https://github.com/groovehq/matrix-js-bot-sdk/issues"
   },
-  "homepage": "https://github.com/turt2live/matrix-js-bot-sdk#readme",
+  "homepage": "https://github.com/groovehq/matrix-js-bot-sdk#readme",
   "scripts": {
     "prepublishOnly": "yarn build",
     "docs": "jsdoc -c jsdoc.json -P package.json",
@@ -53,6 +53,7 @@
     "glob-to-regexp": "^0.4.1",
     "hash.js": "^1.1.7",
     "htmlencode": "^0.0.4",
+    "ioredis": "^4.17.1",
     "lowdb": "^1.0.0",
     "lru-cache": "^5.1.1",
     "mkdirp": "^0.5.1",
@@ -76,5 +77,8 @@
     "ts-mocha": "^6.0.0",
     "tslint": "^5.20.1",
     "typescript": "^3.7.2"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   }
 }

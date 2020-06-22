@@ -61,6 +61,7 @@ export * from "./storage/IAppserviceStorageProvider";
 export * from "./storage/IStorageProvider";
 export * from "./storage/MemoryStorageProvider";
 export * from "./storage/SimpleFsStorageProvider";
+export * from "./storage/IoRedisStorageProvider";
 
 // Strategies
 export * from "./strategies/AppserviceJoinRoomStrategy";
