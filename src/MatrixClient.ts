@@ -732,11 +732,15 @@ export class MatrixClient extends EventEmitter {
      * @param {string} roomId The room ID to get the context in.
      * @param {string} eventId The event ID to get the context of.
      * @param {number} limit The maximum number of events to return on either side of the event.
+     * @param {any} filter A RoomEventFilter object to filter the returned events with. The filter is only applied to events_before, events_after, and state. It is not applied to the event itself. The filter may be applied before or/and after the limit parameter - whichever the homeserver prefers.
      * @returns {Promise<EventContext>} The context of the event
      */
     @timedMatrixClientFunctionCall()
-    public async getEventContext(roomId: string, eventId: string, limit = 10): Promise<EventContext> {
-        const res = await this.doRequest("GET", "/_matrix/client/r0/rooms/" + encodeURIComponent(roomId) + "/context/" + encodeURIComponent(eventId), {limit});
+    public async getEventContext(roomId: string, eventId: string, limit = 10, filter: any = null): Promise<EventContext> {
+        if (!filter || typeof (filter) !== "object") {
+            LogService.debug("MatrixClientLite", "No filter given or invalid object - using defaults.");
+        }
+        const res = await this.doRequest("GET", "/_matrix/client/r0/rooms/" + encodeURIComponent(roomId) + "/context/" + encodeURIComponent(eventId), {limit, filter: JSON.stringify(filter)});
         return {
             event: new RoomEvent<RoomEventContent>(res['event']),
             before: res['events_before'].map(e => new RoomEvent<RoomEventContent>(e)),
