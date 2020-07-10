@@ -736,8 +736,11 @@ export class MatrixClient extends EventEmitter {
      * @returns {Promise<EventContext>} The context of the event
      */
     @timedMatrixClientFunctionCall()
-    public async getEventContext(roomId: string, eventId: string, limit = 10, filter): Promise<EventContext> {
-        const res = await this.doRequest("GET", "/_matrix/client/r0/rooms/" + encodeURIComponent(roomId) + "/context/" + encodeURIComponent(eventId), {limit, filter});
+    public async getEventContext(roomId: string, eventId: string, limit = 10, filter: any = null): Promise<EventContext> {
+        if (!filter || typeof (filter) !== "object") {
+            LogService.debug("MatrixClientLite", "No filter given or invalid object - using defaults.");
+        }
+        const res = await this.doRequest("GET", "/_matrix/client/r0/rooms/" + encodeURIComponent(roomId) + "/context/" + encodeURIComponent(eventId), {limit, filter: JSON.stringify(filter)});
         return {
             event: new RoomEvent<RoomEventContent>(res['event']),
             before: res['events_before'].map(e => new RoomEvent<RoomEventContent>(e)),
