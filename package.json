@@ -1,6 +1,6 @@
 {
-  "name": "@groovehq/matrix-bot-sdk",
-  "version": "0.5.5",
+  "name": "@groovehq/matrix-js-bot-sdk",
+  "version": "0.5.6",
   "description": "A lightweight version of the matrix-js-sdk intended for bots",
   "repository": {
     "type": "git",
